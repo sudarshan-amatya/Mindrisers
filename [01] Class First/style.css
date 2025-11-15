@@ -69,13 +69,13 @@ form {
 .field button {
     cursor: pointer;
     color: #fff;
-    background-color: #9987f7;
+    background-color: #775df8;
     transition: all 0.3s ease-in-out;
 
 }
 
 .field button:hover {
-
+    background-color: #927dfa;
     transform: scale(1.01);
 }
 
