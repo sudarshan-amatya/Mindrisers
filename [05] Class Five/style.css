@@ -1,6 +1,7 @@
+/* gird  */
 .grid-container{
     display: grid;
-    
+
 }
 .item{
     padding: 2em;
