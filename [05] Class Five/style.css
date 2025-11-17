@@ -1,4 +1,12 @@
-img[alt="no image"]{
-    height: 700px;
-
+.grid-container{
+    display: grid;
+    
+}
+.item{
+    padding: 2em;
+    color: white;
+    background-color: blue;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 2em;
 }
