@@ -279,7 +279,7 @@
             tooltip.style.display = "block";
             document.getElementById("tour-message").innerText = step.message;
 
-            // Position tooltip below the element
+            // Position tooltip below the element.
             const rect = element.getBoundingClientRect();
             tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`;
             tooltip.style.left = `${rect.left + window.scrollX}px`;
