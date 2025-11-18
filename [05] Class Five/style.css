@@ -1,9 +1,16 @@
 /* gird  */
 .grid-container{
-    display: grid;
-    grid-template-columns: 300px 300px 300px;
-    grid-template-rows: 300px 300px 300px;
-    gap: 1em;
+    /* display: grid; */
+    /* grid-template-columns: 300px 300px 300px; */
+    /* grid-template-rows: 300px 300px; */
+    /* grid-auto-rows: auto;
+    grid-auto-columns: 100px; */
+    /* grid-auto-flow: column; */
+    /* grid-template-areas: 
+    "box-1 box-1 box-2 box-2"
+    "box-1 box-1 box-4 box-3"
+    "box-1 box-1 box-4 box-5 " ; */
+    /* gap: 1em; */
     /* justify-items: center;
     align-items: center;
     justify-content: center;
@@ -11,12 +18,12 @@
 }
 /* item  */
 .item{
-    height: 100px;
-    width: 100px;
-    padding: 2em;
-    color: white;
-    background-color: blue;
-    text-align: center;
-    border-radius: 8px;
-    font-size: 1.5em;
+    /* height: 100px;
+    width: 100px; */
+    /* padding: 2em;
+    color: white; */
+    /* background-color: blue; */
+    /* text-align: center; */
+    /* border-radius: 8px;
+    font-size: 1.5em; */
 }
