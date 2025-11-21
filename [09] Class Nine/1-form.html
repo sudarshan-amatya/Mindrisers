@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        form {
+            background-color: #d6dade;
+            padding: 1rem;
+            border-radius: .5rem;
+            width: 50%;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom:4px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 1rem;
+        }
+
+        button {
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <form>
+            <h1>National Census Form</h1>
+            <div class="form-group">
+                <label>Census ID</label>
+                <input class="input-field" type="text" value="CEN-2025-00123456" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>First Name *</label>
+                <input class="input-field" type="text">
+            </div>
+            <div class="form-group">
+                <label>Last Name *</label>
+                <input class="input-field" type="text">
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth *</label>
+                <input class="input-field" type="date" required>
+            </div>
+            <br />
+            <div class="">
+                <button type="submit">Submit Census Form 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Tooltip -->
+    <div id="tour-tooltip" style="display:none;">
+        <div id="tour-message">Message</div>
+        <div style="margin-top:5px;">
+            <button id="next-btn" onclick="nextStep()">Next</button>
+            <button onclick="endTour()">✖ Close</button>
+        </div>
+    </div>
+
+    <button type="button" id="start-btn" onclick="startTour()">Start Tour</button>
+    <script>
+        const steps = [
+            {
+                element: `form`,
+                message: `this form should be a the exact center of the screen
+                `
+            },
+            {
+                element: `form button`,
+                message: `this button should be a the exact center horizontally.
+                `
+            },
+            {
+                element: `form button svg`,
+                message: `this svg icon is not at the exact center of the button. 
+
+                the text and icon should be at the exact center of the button.
+                `
+            },
+            
+        ]
+        const style = document.createElement('style');
+        style.textContent = `
+            /* Styles for guided tour tooltip */
+            .highlight {
+                outline: 3px solid orange;
+                background-color: rgba(255, 165, 0, 0.2);
+                transition: 0.3s;
+                position: relative;
+                z-index: 1001;
+            }
+
+            #tour-tooltip {
+                position: absolute;
+                background: white;
+                border: 1px solid black;
+                padding: 10px;
+                width: 220px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                font-family: Arial, sans-serif;
+                z-index: 1000;
+                pointer-events: none;
+            }
+
+            #tour-tooltip button {
+                margin-top: 5px;
+                margin-right: 5px;
+                padding: 5px 8px;
+                pointer-events: auto;
+            }
+
+            #start-btn {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform:translateX(-50%);
+                padding: 10px 15px;
+                font-weight: bold;
+                background-color: #f39c12;
+                border: none;
+                cursor: pointer;
+                color: white;
+                border-radius: 5px;
+                z-index: 1001;
+            }
+
+            #start-btn.highlight {
+                outline: 3px solid orange;
+                background-color: #ffa500;
+                box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+            }
+
+            /* Add your custom styles here */
+        `;
+        document.head.appendChild(style);
+
+
+
+        let current = 0;
+        const tooltip = document.getElementById("tour-tooltip");
+        const startBtn = document.getElementById("start-btn");
+
+        // Highlight start button initially
+        startBtn.classList.add("highlight");
+
+        function showStep(index) {
+            clearHighlights();
+            const step = steps[index];
+            const element = document.querySelector(step.element);
+
+            if (!element) return;
+
+            element.classList.add("highlight");
+            element.scrollIntoView({ behavior: "smooth", block: "center" });
+
+            // Show tooltip
+            tooltip.style.display = "block";
+            document.getElementById("tour-message").innerText = step.message;
+
+            // Position tooltip below the element
+            const rect = element.getBoundingClientRect();
+            tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`;
+            tooltip.style.left = `${rect.left + window.scrollX}px`;
+
+            // Change Next button text on last step
+            document.getElementById("next-btn").innerText = index === steps.length - 1 ? "Finish" : "Next";
+        }
+
+        function startTour() {
+            current = 0;
+            startBtn.style.display = "none"; // hide start button after starting
+            showStep(current);
+        }
+
+        function nextStep() {
+            current++;
+            if (current >= steps.length) {
+                endTour();
+                return;
+            }
+            showStep(current);
+        }
+
+        function endTour() {
+            clearHighlights();
+            tooltip.style.display = "none";
+            startBtn.style.display = "block"; // show start button again
+            startBtn.classList.add("highlight"); // highlight start button again
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll(".highlight").forEach(el => el.classList.remove("highlight"));
+        }
+    </script>
+
+</body>
+
+</html>
