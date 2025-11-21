@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            font-size: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .card {
+            padding-left: 20px;
+            position: relative;
+            margin: 50px auto 0;
+            /* background-color: red; */
+            border: 1px solid;
+            height: 400px;
+            width: 300px;
+            border-radius: 8px;
+        }
+
+        .card-button {
+            border: 1px solid rgba(1, 1, 1, 0.2);
+            font-size: 20px;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            top: 5%;
+            cursor: pointer;
+            position: absolute;
+            top: 5%;
+            right: 0;
+            height: 30px;
+            width: 30px;
+            border-radius: 10px;
+            transform: translateX(50%);
+        }
+
+        .card-button:hover {
+            background-color: rgb(241, 87, 87);
+            cursor: pointer;
+            position: absolute;
+            top: 5%;
+            transform: translateX(50%);
+            transform: translateX(50%) scale(1.05);
+            /* transform: scale(1.1);  makes button move left*/
+        }
+
+        .card-button:active {
+            background-color: red;
+            transform: translateX(50%) scale(1);
+        }
+    </style>
+
+
+
+
+</head>
+
+<body>
+    <div class="cards">
+        <div class="card">
+            <button class="card-button">X</button>
+            <h2 class="card-title">My css</h2>
+            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda dignissimos et illo
+                minus iure
+                cupiditate doloremque atque voluptates, ab eveniet consectetur laboriosam rem aperiam praesentium
+                nostrum saepe nam quibusdam earum?</p>
+        </div>
+    </div>
+</body>
+
+</html>
