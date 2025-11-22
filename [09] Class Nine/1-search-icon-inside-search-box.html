@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        form input {
+            padding: 1rem 1rem;
+            border-radius: 8px;
+            width: 400px;
+        }
+
+        .blog {
+            border: 1px solid gray;
+            padding: 1rem;
+            width: 300px;
+            margin-bottom: 1rem;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <form>
+        <input placeholder="search.." />
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-search">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+            <path d="M21 21l-6 -6" />
+        </svg>
+    </form>
+
+    <br />
+    <br />
+    <h1>My Blogs</h1>
+    <div class="blogs">
+        <div class="blog">
+            <img src="https://placehold.co/200x200" alt="JavaScript programming languages ">
+            <h2>My Title</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas sunt, molestias tenetur ipsum possimus
+                quibusdam a consectetur, corporis, obcaecati sapiente ut? Soluta eius nesciunt debitis quidem, aliquid
+                sed nam rerum.</p>
+        </div>
+        <div class="blog">
+            <img src="https://placehold.co/200x200" alt="JavaScript programming languages ">
+            <h2>My Title</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas sunt, molestias tenetur ipsum possimus
+                quibusdam a consectetur, corporis, obcaecati sapiente ut? Soluta eius nesciunt debitis quidem, aliquid
+                sed nam rerum.</p>
+        </div>
+        <div class="blog">
+            <img src="https://placehold.co/200x200" alt="JavaScript programming languages ">
+            <h2>My Title</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas sunt, molestias tenetur ipsum possimus
+                quibusdam a consectetur, corporis, obcaecati sapiente ut? Soluta eius nesciunt debitis quidem, aliquid
+                sed nam rerum.</p>
+        </div>
+        <div class="blog">
+            <img src="https://placehold.co/200x200" alt="JavaScript programming languages ">
+            <h2>My Title</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas sunt, molestias tenetur ipsum possimus
+                quibusdam a consectetur, corporis, obcaecati sapiente ut? Soluta eius nesciunt debitis quidem, aliquid
+                sed nam rerum.</p>
+        </div>
+        <div class="blog">
+            <img src="https://placehold.co/200x200" alt="JavaScript programming languages ">
+            <h2>My Title</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas sunt, molestias tenetur ipsum possimus
+                quibusdam a consectetur, corporis, obcaecati sapiente ut? Soluta eius nesciunt debitis quidem, aliquid
+                sed nam rerum.</p>
+        </div>
+
+    </div>
+
+    <!-- Tooltip -->
+    <div id="tour-tooltip" style="display:none;">
+        <div id="tour-message">Message</div>
+        <div style="margin-top:5px;">
+            <button id="next-btn" onclick="nextStep()">Next</button>
+            <button onclick="endTour()">✖ Close</button>
+        </div>
+    </div>
+
+    <button type="button" id="start-btn" onclick="startTour()">Start Tour</button>
+    <script>
+        const steps = [
+
+            {
+                element: `form svg`,
+                message: `this search icon needs be exact center to the center of input tag vertically.
+
+                and it needs to be inside the search box.
+                `
+            },
+            {
+                element: `.blog`,
+                message: `a single row should contain 4 blogs and remaining should start on new rows. 
+                `
+            },
+
+
+        ]
+        const style = document.createElement('style');
+        style.textContent = `
+            /* Styles for guided tour tooltip */
+            .highlight {
+                outline: 3px solid orange;
+                background-color: rgba(255, 165, 0, 0.2);
+                transition: 0.3s;
+                position: relative;
+                z-index: 1001;
+            }
+
+            #tour-tooltip {
+                position: absolute;
+                background: white;
+                border: 1px solid black;
+                padding: 10px;
+                width: 220px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                font-family: Arial, sans-serif;
+                z-index: 1000;
+                pointer-events: none;
+            }
+
+            #tour-tooltip button {
+                margin-top: 5px;
+                margin-right: 5px;
+                padding: 5px 8px;
+                pointer-events: auto;
+            }
+
+            #start-btn {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform:translateX(-50%);
+                padding: 10px 15px;
+                font-weight: bold;
+                background-color: #f39c12;
+                border: none;
+                cursor: pointer;
+                color: white;
+                border-radius: 5px;
+                z-index: 1001;
+            }
+
+            #start-btn.highlight {
+                outline: 3px solid orange;
+                background-color: #ffa500;
+                box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
+            }
+
+            /* Add your custom styles here */
+        `;
+        document.head.appendChild(style);
+
+
+
+        let current = 0;
+        const tooltip = document.getElementById("tour-tooltip");
+        const startBtn = document.getElementById("start-btn");
+
+        // Highlight start button initially
+        startBtn.classList.add("highlight");
+
+        function showStep(index) {
+            clearHighlights();
+            const step = steps[index];
+            const element = document.querySelector(step.element);
+
+            if (!element) return;
+
+            element.classList.add("highlight");
+            element.scrollIntoView({ behavior: "smooth", block: "center" });
+
+            // Show tooltip
+            tooltip.style.display = "block";
+            document.getElementById("tour-message").innerText = step.message;
+
+            // Position tooltip below the element
+            const rect = element.getBoundingClientRect();
+            tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`;
+            tooltip.style.left = `${rect.left + window.scrollX}px`;
+
+            // Change Next button text on last step
+            document.getElementById("next-btn").innerText = index === steps.length - 1 ? "Finish" : "Next";
+        }
+
+        function startTour() {
+            current = 0;
+            startBtn.style.display = "none"; // hide start button after starting
+            showStep(current);
+        }
+
+        function nextStep() {
+            current++;
+            if (current >= steps.length) {
+                endTour();
+                return;
+            }
+            showStep(current);
+        }
+
+        function endTour() {
+            clearHighlights();
+            tooltip.style.display = "none";
+            startBtn.style.display = "block"; // show start button again
+            startBtn.classList.add("highlight"); // highlight start button again
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll(".highlight").forEach(el => el.classList.remove("highlight"));
+        }
+    </script>
+
+</body>
+
+</html>
