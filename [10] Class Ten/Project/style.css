@@ -72,6 +72,19 @@ html {
     color: #4F5665;
 }
 
+.menu-list ul li {
+    display: inline-block;
+    transform: scale(1) translateZ(0);
+    transition: transform 0.3s;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.menu-list ul li:hover {
+    display: inline-block;
+    transform: scale(1.05);
+}
+
 .nav-button {
     display: flex;
     justify-content: center;
@@ -86,6 +99,15 @@ html {
     font-weight: 500;
     font-size: 1.6rem;
     color: #0B132A;
+    transform: scale(1) translateZ(0);
+    transition: transform 0.3s;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.sign-in:hover {
+    color: #434856;
+    transform: scale(1.05);
 }
 
 .sign-up {
@@ -98,6 +120,11 @@ html {
     border-radius: 50px;
     font-weight: 500;
 
+}
+
+.sign-up:hover {
+    color: #FFF;
+    background-color: #F53855;
 }
 
 /* ==== Main ==== */
@@ -145,7 +172,13 @@ html {
     height: 6rem;
     width: 25rem;
     box-shadow: 0 15px 20px rgba(255, 43, 43, 0.3);
+    transform: scale(1);
+    transition: all 0.3s;
 
+}
+
+.get-started:hover {
+    transform: scale(1.03);
 }
 
 .about-content-right {
@@ -323,10 +356,11 @@ html {
     gap: 3rem;
 
 }
-.free-plan.premium{
-        border: 2px solid #F53838;
 
+.free-plan:hover {
+    border: 2px solid #F53838;
 }
+
 .free-plan-img {
     margin-top: 8rem;
     display: flex;
@@ -401,15 +435,22 @@ html {
     font-size: 1.6rem;
     font-weight: 700;
     border-radius: 5rem;
+    transform: scale(1);
+    transition: all 0.3s;
 }
 
-.p-bottom button {
+.free-plan-bottom button:hover {
     background-color: #F54747;
     font-size: 1.6rem;
     font-weight: 700;
     color: #FFF;
     box-shadow: 0 15px 20px rgba(255, 43, 43, 0.3);
+    transform: scale(1.05);
+}
 
+
+.p-bottom button:hover {
+    transform: scale(1.03);
 }
 
 /* ==== Network ==== */
@@ -551,6 +592,7 @@ html {
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    margin-bottom: 1rem;
 }
 
 .profile .profile-details {
@@ -638,6 +680,12 @@ html {
     height: 6rem;
     width: 25rem;
     box-shadow: 0 15px 20px rgba(255, 43, 43, 0.3);
+    transform: scale(1);
+    transition: all 0.3s;
+}
+
+.subscribe button:hover {
+    transform: scale(1.03);
 }
 
 /* ==== Footer ==== */
@@ -711,7 +759,7 @@ footer {
     color: #0B132A;
     display: grid;
     row-gap: 3rem;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-content: flex-start;
 }
 
@@ -725,3 +773,5 @@ footer {
     font-size: 1.6rem;
     font-weight: 400;
 }
+
+/* ==== Responsive ==== */
