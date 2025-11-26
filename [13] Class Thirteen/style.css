@@ -1,0 +1,144 @@
+/* Google Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Root Colors for Easy Customization */
+:root {
+    --primary-bg: rgba(56, 56, 56, 0.5);
+    --primary-color: white;
+    --border-color: rgba(255, 255, 255, 0.47);
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Rubik", sans-serif;
+}
+
+.track {
+    border: 1px solid red;
+    /* Debug helper */
+}
+
+/* Header */
+.header {
+    width: 100%;
+    height: 50rem;
+}
+
+/* Navigation Bar */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+/* Logo */
+.header .nav .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    color: black;
+    font-weight: 400;
+}
+
+.header .nav .logo-container span {
+    font-weight: 500;
+}
+
+/* Menu Icon */
+.menu-icon {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Close Button */
+.close-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* Slide-in Menu Panel */
+.nav-link-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100vh;
+    padding: 80px 40px;
+    background: var(--primary-bg);
+    backdrop-filter: blur(5px);
+    border-left: 1px solid var(--border-color);
+    color: var(--primary-color);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    display: none;
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Show Menu */
+.nav-link-container.active {
+    display: block;
+}
+
+/* Mobile Menu Header Logo */
+.nav-link-container .logo-container {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.nav-link-container .logo-container p {
+    color: white;
+}
+
+/* Navigation Links */
+.nav-links {
+    padding-left: 1rem;
+}
+
+.nav-link {
+    margin: 15px 0;
+}
+
+.nav-link a {
+    color: var(--primary-color);
+}
+
+
+/* Sign In / Sign Up Links */
+.nav-sign-links {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+}
+
+.nav-sign-links a {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+@media(min-width:768px) {}
+
+/* small laptop 1024 and above */
+@media (min-width:1024px) {}
+
+/* medium laptops 1280 and above */
+@media(min-width:1280px) {}
+
+/*  */
+@media(min-width:1536px) {}
