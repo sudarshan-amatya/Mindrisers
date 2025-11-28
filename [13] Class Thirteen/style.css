@@ -126,8 +126,8 @@
 }
 
 .nav-link a:hover{
-    text-decoration: line-through;
-    color:red
+    color:red;
+    text-decoration: underline;
 }
 
 
