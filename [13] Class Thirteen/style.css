@@ -113,12 +113,21 @@
     padding-left: 1rem;
 }
 
+
+
+
+
 .nav-link {
     margin: 15px 0;
 }
 
 .nav-link a {
     color: var(--primary-color);
+}
+
+.nav-link a:hover{
+    text-decoration: line-through;
+    color:red
 }
 
 
