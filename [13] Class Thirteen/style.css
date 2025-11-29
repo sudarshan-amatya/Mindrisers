@@ -130,7 +130,7 @@
     text-decoration: underline;
 }
 
-/* Sign In / Sign Up Links */
+/* Sign In / Sign Up Links ...*/
 .nav-sign-links {
     display: flex;
     flex-direction: column;
