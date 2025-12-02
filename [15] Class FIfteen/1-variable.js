@@ -18,7 +18,13 @@ let courses = [
 //         console.log(key+":"+course[key]);
 //     }
 // }
-for (const course of courses) {
-    console.log(`Course: ${course.name} , Price: rs ${course.price}`);
-}
-
+// for (const course of courses) {
+//     console.log(`Course: ${course.name} , Price: rs ${course.price}`);
+// }
+const person = {name: "Alice"};
+Object.assign(person, {
+    age: 25,
+    height: "6 f"
+});
+person["address"]="basundhara";
+console.log(person);
