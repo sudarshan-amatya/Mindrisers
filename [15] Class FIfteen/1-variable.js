@@ -1,14 +1,24 @@
-/* 
-console.log("HELLO WORLD.")
-console.log("HELLO WORLD.")
- */
-let name = "Sudarshan Amatya";
-console.log(name);
 let courses = [
     {
         name: "mern",
-        price: 10
+        price: 24000
     },
-    "python",
-    "javascript"]
-console.log(courses)
+    {
+        name: "python",
+        price: 15000
+    },
+    {
+        name: "Ui/Ux",
+        price: 14000
+    },
+]
+
+// for (const course of courses) {
+//     for (const key in course) {
+//         console.log(key+":"+course[key]);
+//     }
+// }
+for (const course of courses) {
+    console.log(`Course: ${course.name} , Price: rs ${course.price}`);
+}
+
