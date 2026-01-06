@@ -2,23 +2,16 @@ import { useState } from "react";
 
 export const Tabs = () => {
   const [currentTab, setTab] = useState("all")
-  const change = (e) => {
-    setTab(e.target.innerText);
-  }
-  const tabs =  ["all","images","videos"]
+  const tabs = ["all", "images", "videos"]
 
   return (
     <div className="m-12">
       <ul className="mb-8 flex gap-4 capitalize">
-        <li>
-          <a href='#' onClick={change}>all</a>
-        </li>
-        <li>
-          <a href='#' onClick={change} >images</a>
-        </li>
-        <li>
-          <a href='#' onClick={change}>videos</a>
-        </li>
+        {tabs.map(tab => (
+          <li>
+            <a href="#" onClick={() => setTab(tab)}>{tab}</a>
+          </li>
+        ))}
       </ul>
       {currentTab == "all" && (
         <div>
