@@ -1,34 +1,42 @@
-import { NextFunction, Request, Response } from 'express';
-import authService from '../services/authService';
+import { NextFunction, Request, Response } from 'express'
+import authService from '../services/authService'
 
 const authController = {
-  signup: async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const user = await authService.signup(req);
-      const userData = user.toJSON();
-      delete userData.password;
+    signup: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const data = await authService.signup(req.body)
 
-      return res.status(201).json(userData);
-    } catch (error) {
-      return next(error);
-    }
-  },
+            return res.status(201).json({
+                message: 'Account created successfully',
+                data,
+            })
+        } catch (error) {
+            return next(error)
+        }
+    },
 
-  login: async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const user = await authService.login(req);
+    login: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const data = await authService.login(req.body)
 
-      if (!user) {
-        return res.status(401).json({
-          message: 'Invalid credentials.',
-        });
-      }
+            return res.status(200).json({
+                message: 'Login successful',
+                data,
+            })
+        } catch (error) {
+            return next(error)
+        }
+    },
 
-      return res.status(200).json(user);
-    } catch (error) {
-      return next(error);
-    }
-  },
-};
+    getUser: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            return res.status(200).json({
+                data: req.user,
+            })
+        } catch (error) {
+            return next(error)
+        }
+    },
+}
 
-export default authController;
+export default authController
