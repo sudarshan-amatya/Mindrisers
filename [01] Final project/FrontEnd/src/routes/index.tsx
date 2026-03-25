@@ -4,6 +4,8 @@ import Login from '../pages/Login'
 import RootLayout from '../components/layout/RootLayout'
 import NotFound from '../pages/NotFound'
 import ProtectedRoute from '../components/ProtectedRoute'
+import Dashboard from '../pages/seller/Dashboard'
+import Signup from '../pages/Signup'
 
 const router = createBrowserRouter([
     {
@@ -12,12 +14,13 @@ const router = createBrowserRouter([
         children: [
             { index: true, Component: Home },
             { path: 'login', Component: Login },
+            { path: 'signup', Component: Signup },
             {
                 path: 'seller',
                 Component: ProtectedRoute,
                 children: [
-                    { path: 'products', Component: Login },
-                    { path: 'orders', Component: Login },
+                    { path: 'dashboard', Component: Dashboard },
+                    { path: 'orders', Component: Dashboard },
                 ],
             },
             { path: '*', Component: NotFound },

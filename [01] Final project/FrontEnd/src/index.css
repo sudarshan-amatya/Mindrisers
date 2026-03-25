@@ -6,7 +6,7 @@ body {
 
 @layer components {
     .container {
-        @apply mx-auto px-3 md:px-6;
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
     }
     .track {
         @apply border border-red-500;

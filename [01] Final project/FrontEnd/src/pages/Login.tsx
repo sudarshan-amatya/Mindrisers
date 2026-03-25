@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import Breadcrumbs from '../components/Breadcrumbs'
 import axios from 'axios'
-import { Link, useNavigate } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { login } from '../redux/slice/userSlice'
+import { useNavigate, Link } from 'react-router'
+import { toast } from 'react-toastify'
 
 function Login() {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
 
@@ -21,15 +26,20 @@ function Login() {
                     password,
                 }
             )
-            console.log(res.data)
-            localStorage.setItem('accessToken', res.data.token)
+
+            const userData = res.data.data
+
+            localStorage.setItem('accessToken', userData.token)
+            dispatch(login(userData))
+            toast.success(res.data.message || 'Login successful')
             navigate('/')
-        } catch (error) {
-            console.error(error)
+        } catch (error: any) {
+            toast.error(error?.response?.data?.message || 'Login failed')
         } finally {
             setLoading(false)
         }
     }
+
     return (
         <div>
             <Breadcrumbs />
@@ -42,7 +52,7 @@ function Login() {
                                     Login
                                 </h2>
                                 <p className="mt-1 text-center text-xs text-slate-500">
-                                    Please login using account detail bellow.
+                                    Please login using account detail below.
                                 </p>
 
                                 <form
@@ -95,7 +105,7 @@ function Login() {
                                     </button>
 
                                     <p className="pt-3 text-center text-xs text-slate-500">
-                                        Don't have an account?
+                                        Don&apos;t have an account?
                                         <Link
                                             to="/register"
                                             className="ml-1 text-slate-600 hover:text-pink-600"

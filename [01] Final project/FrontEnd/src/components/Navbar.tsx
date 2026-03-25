@@ -65,6 +65,17 @@ function Navbar() {
                                     Contact
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/seller/dashboard"
+                                    className={({ isActive }) =>
+                                        `transition hover:text-pink-500 ${isActive ? 'text-pink-500' : ''}`
+                                    }
+                                >
+                                    Dashboard
+                                </NavLink>
+                            </li>
+                            
                         </ul>
 
                         {/* Search */}
