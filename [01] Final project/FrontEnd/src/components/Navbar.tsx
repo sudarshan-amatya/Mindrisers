@@ -1,15 +1,18 @@
-import { Menu, Search, X, ChevronDown } from 'lucide-react'
+import { Menu, Search, X } from 'lucide-react'
 import { Link, NavLink } from 'react-router'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import type { RootState } from '../redux/store'
+import BecomeSellerButton from './BecomeSellerButton'
 
 function Navbar() {
+    const user = useSelector((root: RootState) => root.user.data)
     const [open, setOpen] = useState(false)
 
     return (
-        <nav >
+        <nav>
             <div className="container">
                 <div className="flex items-center justify-between gap-10 py-4">
-                    {/* Logo */}
                     <Link
                         to="/"
                         className="shrink-0 text-[clamp(1.75rem,1.4rem+1vw,2.5rem)] font-bold tracking-tight text-[#1D1D5B]"
@@ -17,14 +20,13 @@ function Navbar() {
                         Myshop
                     </Link>
 
-                    {/* Desktop nav */}
                     <div className="hidden flex-1 items-center justify-between gap-8 lg:flex">
                         <ul className="flex items-center gap-7 text-clamp font-medium text-[#151875]">
                             <li>
                                 <NavLink
                                     to="/"
                                     className={({ isActive }) =>
-                                        `flex items-center gap-1 transition hover:text-pink-500 ${
+                                        `transition hover:text-pink-500 ${
                                             isActive ? 'text-pink-500' : ''
                                         }`
                                     }
@@ -33,22 +35,15 @@ function Navbar() {
                                 </NavLink>
                             </li>
 
-                            <li>
-                                <NavLink
-                                    to="/pages"
-                                    className={({ isActive }) =>
-                                        `transition hover:text-pink-500 ${isActive ? 'text-pink-500' : ''}`
-                                    }
-                                >
-                                    Pages
-                                </NavLink>
-                            </li>
+                           
 
                             <li>
                                 <NavLink
                                     to="/products"
                                     className={({ isActive }) =>
-                                        `transition hover:text-pink-500 ${isActive ? 'text-pink-500' : ''}`
+                                        `transition hover:text-pink-500 ${
+                                            isActive ? 'text-pink-500' : ''
+                                        }`
                                     }
                                 >
                                     Products
@@ -59,26 +54,38 @@ function Navbar() {
                                 <NavLink
                                     to="/contact"
                                     className={({ isActive }) =>
-                                        `transition hover:text-pink-500 ${isActive ? 'text-pink-500' : ''}`
+                                        `transition hover:text-pink-500 ${
+                                            isActive ? 'text-pink-500' : ''
+                                        }`
                                     }
                                 >
                                     Contact
                                 </NavLink>
                             </li>
-                            <li>
-                                <NavLink
-                                    to="/seller/dashboard"
-                                    className={({ isActive }) =>
-                                        `transition hover:text-pink-500 ${isActive ? 'text-pink-500' : ''}`
-                                    }
-                                >
-                                    Dashboard
-                                </NavLink>
-                            </li>
+
+                            {user?.isSeller && (
+                                <li>
+                                    <NavLink
+                                        to="/seller/dashboard"
+                                        className={({ isActive }) =>
+                                            `transition hover:text-pink-500 ${
+                                                isActive ? 'text-pink-500' : ''
+                                            }`
+                                        }
+                                    >
+                                        Dashboard
+                                    </NavLink>
+                                </li>
+                            )}
+
                             
+                            {!user?.isSeller && (
+                                <li>
+                                    <BecomeSellerButton />
+                                </li>
+                            )}
                         </ul>
 
-                        {/* Search */}
                         <div className="flex items-center overflow-hidden border border-gray-200">
                             <input
                                 type="text"
@@ -95,87 +102,118 @@ function Navbar() {
                         </div>
                     </div>
 
-                    {/* Mobile menu button */}
                     <button
                         type="button"
                         onClick={() => setOpen(!open)}
-                        className="flex h-10 w-10 items-center justify-center  text-[#151875] lg:hidden"
+                        className="flex h-10 w-10 items-center justify-center text-[#151875] lg:hidden"
                         aria-label="Toggle menu"
                     >
                         {open ? <X size={20} /> : <Menu size={20} />}
                     </button>
                 </div>
 
-                {/* Mobile menu */}
                 <div
                     className={`overflow-hidden transition-all duration-300 lg:hidden ${
-                        open
-                            ? 'max-h-125 pb-4 opacity-100'
-                            : 'max-h-0 opacity-0'
+                        open ? 'max-h-125 pb-4 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                 >
                     <div className="space-y-3 border-t border-gray-100 pt-4">
                         <ul className="space-y-3 text-clamp font-medium text-[#151875]">
                             <li>
-                                <Link
+                                <NavLink
                                     to="/"
-                                    className="flex items-center gap-1 text-pink-500"
+                                    className={({ isActive }) =>
+                                        `block transition hover:text-pink-500 ${
+                                            isActive ? 'text-pink-500' : ''
+                                        }`
+                                    }
                                     onClick={() => setOpen(false)}
                                 >
                                     Home
-                                    <ChevronDown size={14} />
-                                </Link>
+                                </NavLink>
                             </li>
 
                             <li>
-                                <Link
+                                <NavLink
                                     to="/pages"
-                                    className="block transition hover:text-pink-500"
+                                    className={({ isActive }) =>
+                                        `block transition hover:text-pink-500 ${
+                                            isActive ? 'text-pink-500' : ''
+                                        }`
+                                    }
                                     onClick={() => setOpen(false)}
                                 >
                                     Pages
-                                </Link>
+                                </NavLink>
                             </li>
 
                             <li>
-                                <Link
+                                <NavLink
                                     to="/products"
-                                    className="block transition hover:text-pink-500"
+                                    className={({ isActive }) =>
+                                        `block transition hover:text-pink-500 ${
+                                            isActive ? 'text-pink-500' : ''
+                                        }`
+                                    }
                                     onClick={() => setOpen(false)}
                                 >
                                     Products
-                                </Link>
+                                </NavLink>
                             </li>
 
                             <li>
-                                <Link
-                                    to="/blog"
-                                    className="block transition hover:text-pink-500"
-                                    onClick={() => setOpen(false)}
-                                >
-                                    Blog
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
-                                    to="/shop"
-                                    className="block transition hover:text-pink-500"
-                                    onClick={() => setOpen(false)}
-                                >
-                                    Shop
-                                </Link>
-                            </li>
-
-                            <li>
-                                <Link
+                                <NavLink
                                     to="/contact"
-                                    className="block transition hover:text-pink-500"
+                                    className={({ isActive }) =>
+                                        `block transition hover:text-pink-500 ${
+                                            isActive ? 'text-pink-500' : ''
+                                        }`
+                                    }
                                     onClick={() => setOpen(false)}
                                 >
                                     Contact
-                                </Link>
+                                </NavLink>
                             </li>
+
+                            {user?.isSeller && (
+                                <li>
+                                    <NavLink
+                                        to="/seller/dashboard"
+                                        className={({ isActive }) =>
+                                            `block transition hover:text-pink-500 ${
+                                                isActive ? 'text-pink-500' : ''
+                                            }`
+                                        }
+                                        onClick={() => setOpen(false)}
+                                    >
+                                        Dashboard
+                                    </NavLink>
+                                </li>
+                            )}
+
+                            {user?.isAdmin && (
+                                <li>
+                                    <NavLink
+                                        to="/admin/dashboard"
+                                        className={({ isActive }) =>
+                                            `block transition hover:text-pink-500 ${
+                                                isActive ? 'text-pink-500' : ''
+                                            }`
+                                        }
+                                        onClick={() => setOpen(false)}
+                                    >
+                                        Admin
+                                    </NavLink>
+                                </li>
+                            )}
+
+                            {!user?.isSeller && !user?.isAdmin && (
+                                <li>
+                                    <div onClick={() => setOpen(false)}>
+                                        <BecomeSellerButton />
+                                    </div>
+                                </li>
+                            )}
                         </ul>
 
                         <div className="flex items-center overflow-hidden border border-gray-200">

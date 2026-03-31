@@ -1,11 +1,13 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import { createSlice,type PayloadAction } from '@reduxjs/toolkit'
 
 type UserData = {
     id?: number | string
     firstName: string
     lastName: string
     email: string
-    role: string
+    isSeller: boolean
+    isAdmin: boolean
+    sellerRequestStatus: 'none' | 'pending' | 'approved' | 'rejected'
     token?: string
 }
 
@@ -28,8 +30,13 @@ export const userSlice = createSlice({
             state.data = null
             localStorage.removeItem('accessToken')
         },
+        updateSellerStatus: (state, action: PayloadAction<boolean>) => {
+            if (state.data) {
+                state.data.isSeller = action.payload
+            }
+        },
     },
 })
 
-export const { login, logout } = userSlice.actions
+export const { login, logout, updateSellerStatus } = userSlice.actions
 export default userSlice.reducer

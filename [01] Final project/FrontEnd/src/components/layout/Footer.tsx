@@ -31,7 +31,7 @@ function Footer() {
 
                         <div className="mt-5 space-y-1 text-sm text-[#8A8FB9]">
                             <p>Contact Info</p>
-                            <p>17 Princess Road, London, Greater London NW1 8JR, UK</p>
+                            <p>Basundhara, Kathmandu</p>
                         </div>
                     </div>
 
@@ -75,29 +75,16 @@ function Footer() {
                             Pages
                         </h3>
                         <ul className="mt-5 space-y-3 text-sm text-[#8A8FB9]">
+                         
                             <li>
-                                <Link to="/blog" className="transition hover:text-pink-600">
-                                    Blog
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/shop" className="transition hover:text-pink-600">
+                                <Link to="/products" className="transition hover:text-pink-600">
                                     Browse the Shop
                                 </Link>
                             </li>
+                            
                             <li>
-                                <Link to="/category" className="transition hover:text-pink-600">
-                                    Category
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/pre-built-pages" className="transition hover:text-pink-600">
-                                    Pre-Built Pages
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/visual-composer-elements" className="transition hover:text-pink-600">
-                                    Visual Composer Elements
+                                <Link to="/contact" className="transition hover:text-pink-600">
+                                    Contact Us
                                 </Link>
                             </li>
                         </ul>

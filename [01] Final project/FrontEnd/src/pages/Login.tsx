@@ -14,7 +14,7 @@ function Login() {
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
 
@@ -32,7 +32,13 @@ function Login() {
             localStorage.setItem('accessToken', userData.token)
             dispatch(login(userData))
             toast.success(res.data.message || 'Login successful')
-            navigate('/')
+            if (userData.isAdmin) {
+                navigate('/admin/dashboard')
+            } else if (userData.isSeller) {
+                navigate('/seller/dashboard')
+            } else {
+                navigate('/')
+            }
         } catch (error: any) {
             toast.error(error?.response?.data?.message || 'Login failed')
         } finally {
@@ -107,7 +113,7 @@ function Login() {
                                     <p className="pt-3 text-center text-xs text-slate-500">
                                         Don&apos;t have an account?
                                         <Link
-                                            to="/register"
+                                            to="/signup"
                                             className="ml-1 text-slate-600 hover:text-pink-600"
                                         >
                                             Create account
