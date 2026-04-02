@@ -1,11 +1,9 @@
-import { Router } from 'express';
+import { Router } from 'express'
+import orderController from '../../controllers/orderController'
 
-const router = Router();
-router.get('/', (req, res) => {
-  res.send('order Fetched...');
-});
-router.post('/', (req, res) => {
-  res.send('order create...');
-});
+const router = Router()
 
-export default router;
+router.get('/', orderController.getSellerOrders)
+router.patch('/:id/status', orderController.updateSellerOrderStatus)
+
+export default router

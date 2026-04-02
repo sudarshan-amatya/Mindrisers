@@ -1,9 +1,9 @@
-import { NextFunction, Request, Response, Router } from 'express';
-import checkAuthentication from '../middlewares/auth';
-const router = Router();
+import { Router } from 'express'
+import productController from '../controllers/productController'
 
-router.get('/', checkAuthentication, (req: Request, res: Response) => {
-  res.send('Products Routes...');
-});
+const router = Router()
 
-export default router;
+router.get('/', productController.getAllProducts)
+router.get('/:id', productController.getProductById)
+
+export default router

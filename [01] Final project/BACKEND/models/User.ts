@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../connections/database'
-import { Buyer, Seller } from '../constants/role'
 
 const User = sequelize.define(
     'User',
@@ -25,10 +24,28 @@ const User = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        role: {
+        isSeller: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
+        },
+        isAdmin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false,
+        },
+        sellerRequestStatus: {
             type: DataTypes.ENUM,
-            values: [Buyer, Seller],
-            defaultValue: Buyer,
+            values: ['none', 'pending', 'approved', 'rejected'],
+            defaultValue: 'none',
+        },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        address: {
+            type: DataTypes.TEXT,
+            allowNull: true,
         },
     },
     {

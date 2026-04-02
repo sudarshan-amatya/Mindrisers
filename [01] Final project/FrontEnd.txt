@@ -1,0 +1,2 @@
+FrontEnd
+1. npm install lucide-react@0.577.0 --save-exact
