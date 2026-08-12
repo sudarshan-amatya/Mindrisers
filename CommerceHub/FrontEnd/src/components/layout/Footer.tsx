@@ -12,7 +12,7 @@ function Footer() {
                             to="/"
                             className="text-[clamp(1.8rem,1.5rem+1vw,2.4rem)] font-bold text-[#151875]"
                         >
-                            Myshop
+                            CommerceHub
                         </Link>
 
                         <form className="mt-5 flex overflow-hidden rounded border border-slate-200 bg-white">
@@ -95,7 +95,7 @@ function Footer() {
             <div className="bg-[#E7E4F8]">
                 <div className="container flex flex-col items-center justify-between gap-4 py-4 sm:flex-row">
                     <p className="text-sm text-[#9DA0AE]">
-                        ©Myshop - All Rights Reserved
+                        ©CommerceHub - All Rights Reserved
                     </p>
 
                     <div className="flex items-center gap-3">

@@ -36,11 +36,11 @@ function Header() {
                 <div className="flex min-h-14 items-center justify-between gap-4 py-2">
                     <div className="flex flex-wrap items-center gap-2 text-xs sm:gap-3 sm:text-sm">
                         <a
-                            href="mailto:support@myshop.com"
+                            href="mailto:support@commercehub.com"
                             className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-white/85 transition hover:bg-white/10 sm:flex"
                         >
                             <Mail size={14} />
-                            <span>support@myshop.com</span>
+                            <span>support@commercehub.com</span>
                         </a>
 
                         <a

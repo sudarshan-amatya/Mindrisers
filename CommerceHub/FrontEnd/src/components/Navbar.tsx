@@ -17,7 +17,7 @@ function Navbar() {
                         to="/"
                         className="shrink-0 text-[clamp(1.75rem,1.4rem+1vw,2.5rem)] font-bold tracking-tight text-[#1D1D5B]"
                     >
-                        Myshop
+                        CommerceHub
                     </Link>
 
                     <div className="hidden flex-1 items-center justify-between gap-8 lg:flex">
